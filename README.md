@@ -14,7 +14,7 @@ A hybrid AI-powered movie recommendation system built with Python and Streamlit.
 - **Hybrid Recommendation Engine** — blends three algorithms for best accuracy:
   - 📝 Content-Based (TF-IDF genre similarity)
   - 🔢 SVD Matrix Factorization (latent factor discovery)
-  - 🔗 KNN Item-Based Collaborative Filtering (user rating patterns)
+  - 🔗 KNN Item-Based Collaborative Filtering (sparse, memory-efficient for 25M+ ratings)
 - **Mood-Aware Picks** — recommends movies based on your current mood (Adventurous, Sad, Stressed, etc.)
 - **Explainable AI** — "Why This?" feature shows exactly why each movie was recommended
 - **Taste Profile Builder** — rate movies to personalize your recommendations
@@ -122,7 +122,9 @@ Hybrid Score = 0.30 × Content Score + 0.40 × SVD Score + 0.30 × KNN Score
 |-------|--------|--------|
 | Content (TF-IDF/BERT) | 30% | Genre cosine similarity |
 | SVD | 40% | Matrix factorization of user-item ratings |
-| KNN | 30% | Item-based nearest neighbor (cosine similarity) |
+| KNN | 30% | Item-based nearest neighbor (sparse cosine, sklearn) |
+
+> **Large dataset note:** KNN uses a sparse `csr_matrix` via scikit-learn instead of Surprise's dense similarity matrix. This avoids the ~11 GiB memory allocation that occurs with 25M-scale datasets (39k× 39k item matrix). Only items with ≥ 50 ratings are indexed, keeping memory well under 1 GiB.
 
 ### Mood → Genre Mapping
 
@@ -180,7 +182,7 @@ HybridRecommender(
 | streamlit | 1.28.0 | Web UI |
 | pandas | 2.1.0 | Data manipulation |
 | scikit-learn | 1.3.0 | TF-IDF, cosine similarity |
-| scikit-surprise | 1.1.3 | SVD + KNN collaborative filtering |
+| scikit-surprise | 1.1.3 | SVD collaborative filtering |
 | plotly | 5.17.0 | Interactive charts |
 | sentence-transformers | 2.2.2 | BERT embeddings (optional) |
 | joblib | 1.3.2 | Model serialization |

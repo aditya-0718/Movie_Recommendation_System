@@ -42,7 +42,7 @@ def train(data_dir: str = "data", use_bert: bool = False):
     print("STEP 2/2 — Collaborative Models (SVD + KNN)")
     print("  Note: with 25M dataset this step takes ~5-10 minutes")
     print("="*55)
-    collab_model = CollabRecommender(k_neighbors=40)
+    collab_model = CollabRecommender(k_neighbors=20)
     collab_model.fit(movies, ratings)
     collab_model.save("models/collab_model.pkl")
 
