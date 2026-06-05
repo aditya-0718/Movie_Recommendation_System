@@ -1,0 +1,58 @@
+# ── Virtual Environment ────────────────────────────────────────────
+venv/
+env/
+.env/
+.venv/
+ENV/
+
+# ── Python Cache ────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyc
+
+# ── Trained Models (large binary files) ────────────────────────────
+models/*.pkl
+models/*.h5
+models/*.pt
+models/*.pth
+
+# ── Dataset Files (large, download separately from GroupLens) ──────
+data/*.dat
+data/*.csv
+data/*.zip
+
+# ── Jupyter Notebooks checkpoints ──────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Environment Variables ───────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+
+# ── IDE / Editor ────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.DS_Store
+Thumbs.db
+
+# ── Logs & Temp ─────────────────────────────────────────────────────
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+logs/
+
+# ── Distribution / Build ────────────────────────────────────────────
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# ── Streamlit ───────────────────────────────────────────────────────
+.streamlit/secrets.toml
